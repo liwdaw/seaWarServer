@@ -2,54 +2,30 @@ package com.liwdaw.model;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Ship implements Serializable {
 	
-	private int length;
-	private Map<Integer, Coordinates> partsCoordinates;
-	private Map<Integer, Boolean> destroyedParts;
+	private Map<Coordinates, Boolean> parts;		// false = part is destroyed
 	
-	public Ship(int length) {
-		this.length = length;
-		partsCoordinates = new HashMap<Integer, Coordinates>(length);
-		destroyedParts = new HashMap<Integer, Boolean>(length);
-		for (int i=0; i<length; i++) {
-			destroyedParts.put(i, false);
+	public Ship(List<Coordinates> partsCoordinates) {
+		parts = new HashMap<Coordinates, Boolean>(partsCoordinates.size());
+		for (int i=0; i<partsCoordinates.size(); i++) {
+			parts.put(partsCoordinates.get(i), true);
 		}
 	}
 	
-	public int getLength() {
-		return length;
+	public boolean areThisShipCoordinates(Coordinates coordinates) {
+		return parts.containsKey(coordinates);
 	}
 	
-	public void setLength(int length) {
-		this.length = length;
-	}
-	
-	public Coordinates getPartCoordinates(int partIndex) {
-		return partsCoordinates.get(partIndex);
-	}
-	
-	public void setPartCoordinates(int partIndex, Coordinates coordinates) {
-		partsCoordinates.put(partIndex, coordinates);
-	}
-	
-	public boolean isPartDestroyed(int partIndex) {
-		return destroyedParts.get(partIndex);
-	}
-	
-	public void destroyPart(int partIndex) {
-		destroyedParts.put(partIndex, true);
+	public void destroyPart(Coordinates coordinates) {
+		parts.put(coordinates, false);
 	}
 	
 	public boolean isShipDestroyed() {
-		for (int i=0; i<length; i++) {
-			if (!destroyedParts.get(i)) {
-				return false;
-			}
-		}
-		return true;
+		return !parts.containsValue(true);
 	}
 	
 }

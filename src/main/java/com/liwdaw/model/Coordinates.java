@@ -28,4 +28,23 @@ public class Coordinates implements Serializable {
 		this.y = y;
 	}
 	
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+        	return true;
+        }
+        if (!(object instanceof Coordinates)) {
+        	return false;
+        }
+        Coordinates coordinates = (Coordinates) object;
+        return x == coordinates.getX() && y == coordinates.getY();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        return result;
+    }
+	
 }
