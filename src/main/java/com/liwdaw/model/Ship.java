@@ -6,9 +6,9 @@ import java.util.Map;
 
 public class Ship implements Serializable {
 	
-	int length;
-	Map<Integer, Coordinates> partsCoordinates;
-	Map<Integer, Boolean> destroyedParts;
+	private int length;
+	private Map<Integer, Coordinates> partsCoordinates;
+	private Map<Integer, Boolean> destroyedParts;
 	
 	public Ship(int length) {
 		this.length = length;
