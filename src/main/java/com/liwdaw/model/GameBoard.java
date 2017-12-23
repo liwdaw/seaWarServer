@@ -16,10 +16,6 @@ public class GameBoard implements Serializable {
 		this.ships = ships;
 		initBattleGround();
 	}
-	
-	public GameBoard(Map<Coordinates, Integer> battleGround) {
-		this.battleGround = battleGround;
-	}
 
 	public Map<Coordinates, Integer> getBattleGround() {
 		return battleGround;
