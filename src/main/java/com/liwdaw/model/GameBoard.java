@@ -39,10 +39,13 @@ public class GameBoard implements Serializable {
 			if (ships.get(i).areThisShipCoordinates(coordinates)) {
 				ships.get(i).destroyPart(coordinates);
 				battleGround.put(coordinates, 1);
+				if (ships.get(i).isShipDestroyed()) {
+					ships.remove(i);
+				}
 				return;
 			}
 		}
 		battleGround.put(coordinates, -1);
 	}
-	
+
 }
